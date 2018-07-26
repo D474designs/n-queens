@@ -93,12 +93,17 @@
       // }
       // return false; // fixme
 
+      // create total variable
       var total = 0;
+      // iterate through row
       for (var x = 0; x < rowIndex.length; x += 1) {
+        // if row index returns true
         if (rowIndex[x]) {
+          // add one to total
           total += 1;
         }
       }
+// if total is greater than 1 return true otherwise return false
 return (total > 1);
 
 // var total = rowIndex.reduce(function(sum, element) {
@@ -155,16 +160,21 @@ return (total > 1);
       // }
       // return false; // fixme
 
+// call rows function
 var board = this.rows();
+// create collision detection
 var collision = false;
-
+// iterate through board length
 for (var i = 0; i < board.length; i++) {
+  // iterate through rows
   if (this.hasRowConflictAt(board[i])) {
+    // if totale is more than 1, return true for variable collision
     collision = true;
   }
 }
-
+// return collision value
 return collision;
+
 // return board.every(function(row) {
 //   return !this.hasRowConflictAt(row);
 // });
@@ -221,12 +231,12 @@ return collision;
       return (tally > 1);
 
       var inCol = 0;
-for (var row of this.rows()) {
-  if(row[colIndex] === 1) {
-    inCol++;
-  }
-}
-return inCol > 1;
+      for (var row of this.rows()) {
+        if(row[colIndex] === 1) {
+          inCol++;
+        }
+      }
+  return inCol > 1;
 
 // var inCol = 0;
 // for (var row of this.rows()) {

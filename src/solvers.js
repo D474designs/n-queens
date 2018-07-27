@@ -13,7 +13,40 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
+// window.findSolution = function(row, n, board, validator, callback) {
+//   // var solutionCount = 0;
+//   if (row === n) {
+//     // solutionCount++;
+//     callback();
+//     return;
+//   }
+//   for (var i = 0; i < n; i++) {
+//     board.togglePiece(row, i);
+//     if (!board[validator]()) {
+//       findSolution(row + 1, n, board, validator, callback);
+//     }
+//     board.togglePiece(row, i);
+//   }
+//   // return solutionCount;
+// };
 
+window.checkRookSolution = function(matrix) {
+  return _.uniq(matrix).length !== matrix.length ? false : true;
+};
+
+window.checkQueenSolution = function(matrix) {
+  if(!checkRookSolution(matrix)){
+    return false;
+  }
+  for(var i = 0; i < matrix.length; i++){
+    for(var j = i+1; j < matrix.length; j++){
+      if(i - j === matrix[i] - matrix[j] || i - j === -matrix[i] + matrix[j]){
+        return false;
+      }
+    }
+  }
+  return true;
+};
 
 window.findNRooksSolution = function(n) {
   // var solution = undefined; //fixme
@@ -97,51 +130,48 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
+
+  // var solutionCount = 0;
+  //
+  // var board = new Board({n:n});
+  //
+  // findSolution(0, n, board, 'hasAnyQueensConflicts', function() {
+  //   solutionCount++;
+  // });
+  //
+  // // console.log('Number of solutions for ' + n + ' queens:', solutionCount, 'in', endTime - startTime, 'milliseconds');
+  // // return solutionCount;
+  // console.log('Number of solutions for ' + n + ' queens:', solutionCount);
+  // return solutionCount;
+
   //   var solutionCount = undefined; //fixme
   //
   //   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   //   return solutionCount;
 
-  //   var startTime = new Date();
-  //   if (n===0){return 1;} //0 queens fit on a 0x0 board 1 time
-  //   var solutionCount = 0;
-  //   var rNQueens = function(tempBoard){
-  //     if(tempBoard.length === n){
-  //       checkQueenSolution(tempBoard) && solutionCount++;
-  //       return;
-  //     }
-  //     for(var i = 0; i < n; i++){
-  //       var boardCheck = tempBoard.concat(i);
-  //       if (checkQueenSolution(boardCheck)){
-  //         rNQueens(boardCheck);
-  //       } else {
-  //         continue;
-  //       }
-  //     }
-  //   };
-  //   rNQueens([]);
-  //   var endTime = new Date();
-  //   console.log('Number of solutions for ' + n + ' queens:', solutionCount, 'in', endTime - startTime, 'milliseconds');
-  //   return solutionCount;
+    var startTime = new Date();
+    if (n===0){return 1;} //0 queens fit on a 0x0 board 1 time
+    var solutionCount = 0;
+    var rNQueens = function(tempBoard){
+      if(tempBoard.length === n){
+        checkQueenSolution(tempBoard) && solutionCount++;
+        return;
+      }
+      for(var i = 0; i < n; i++){
+        var boardCheck = tempBoard.concat(i);
+        if (checkQueenSolution(boardCheck)){
+          rNQueens(boardCheck);
+        } else {
+          continue;
+        }
+      }
+    };
+    rNQueens([]);
+    var endTime = new Date();
+    console.log('Number of solutions for ' + n + ' queens:', solutionCount, 'in', endTime - startTime, 'milliseconds');
+    return solutionCount;
   // };
-  //
-  // window.checkRookSolution = function(matrix) {
-  //   return _.uniq(matrix).length !== matrix.length ? false : true;
-  // };
-  //
-  // window.checkQueenSolution = function(matrix) {
-  //   if(!checkRookSolution(matrix)){
-  //     return false;
-  //   }
-  //   for(var i = 0; i < matrix.length; i++){
-  //     for(var j = i+1; j < matrix.length; j++){
-  //       if(i - j === matrix[i] - matrix[j] || i - j === -matrix[i] + matrix[j]){
-  //         return false;
-  //       }
-  //     }
-  //   }
-  //   return true;
-  // };
+
 
   // if (n === 2 || n === 3) {
   //   return 0;

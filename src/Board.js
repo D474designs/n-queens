@@ -230,13 +230,13 @@ return collision;
 
       return (tally > 1);
 
-      var inCol = 0;
-      for (var row of this.rows()) {
-        if(row[colIndex] === 1) {
-          inCol++;
-        }
-      }
-  return inCol > 1;
+  //     var inCol = 0;
+  //     for (var row of this.rows()) {
+  //       if(row[colIndex] === 1) {
+  //         inCol++;
+  //       }
+  //     }
+  // return inCol > 1;
 
 // var inCol = 0;
 // for (var row of this.rows()) {
@@ -348,31 +348,31 @@ return collision;
       // }
       // return inDiagonal > 1;
 
-      var n = this.get('n');
-      var absDiag = Math.abs(majorDiagonalColumnIndexAtFirstRow);
-      var pos = [0, 0]; // [row, col]
-
-      if (majorDiagonalColumnIndexAtFirstRow < 0) {
-        pos[0] = absDiag;
-      } else {
-        pos[1] = absDiag;
-      }
-
-      var isOccupied = false;
-      while (pos[0] < n && pos[1] < n) {
-        if (this.get(pos[0])[pos[1]]) {
-          if (isOccupied) {
-            return true;
-          } else {
-            isOccupied = true;
-          }
-        }
-
-        pos[0]++;
-        pos[1]++;
-      }
-
-      return false;
+      // var n = this.get('n');
+      // var absDiag = Math.abs(majorDiagonalColumnIndexAtFirstRow);
+      // var pos = [0, 0]; // [row, col]
+      //
+      // if (majorDiagonalColumnIndexAtFirstRow < 0) {
+      //   pos[0] = absDiag;
+      // } else {
+      //   pos[1] = absDiag;
+      // }
+      //
+      // var isOccupied = false;
+      // while (pos[0] < n && pos[1] < n) {
+      //   if (this.get(pos[0])[pos[1]]) {
+      //     if (isOccupied) {
+      //       return true;
+      //     } else {
+      //       isOccupied = true;
+      //     }
+      //   }
+      //
+      //   pos[0]++;
+      //   pos[1]++;
+      // }
+      //
+      // return false;
 
     },
 
